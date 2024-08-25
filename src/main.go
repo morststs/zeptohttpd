@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -34,8 +35,10 @@ func getConfig() (config Config, err error) {
 }
 
 func startServer(config *Config) error {
+	re := regexp.MustCompile(`\?.*$`)
 	fileServer := http.FileServer(http.Dir("public"))
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = re.ReplaceAllString(r.URL.Path, "")
 		for path, contentType := range config.ContentTypes {
 			if strings.HasPrefix(r.URL.Path, path) {
 				w.Header().Set("Content-Type", contentType)
