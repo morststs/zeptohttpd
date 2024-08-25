@@ -11,7 +11,7 @@ RUN [ "${TARGETPLATFORM}" = "linux/arm/v7" ] && CGO_ENABLED=0 GOARCH=arm64 GOARM
 
 FROM scratch
 COPY --from=build /build/zeptohttpd /
-ADD ./public /public
-ADD ./config/config.json /
+COPY ./public /public
+COPY ./config/config.json /
 EXPOSE 80
 CMD ["/zeptohttpd"]
