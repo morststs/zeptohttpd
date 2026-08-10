@@ -65,7 +65,7 @@ docker run --rm -p 8080:80 \
 
 ## Supported platforms
 
-`linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/arm/v6`, `linux/386`.
+`linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/arm/v6`, `linux/arm/v5`, `linux/386`.
 
 ## Development
 
@@ -84,7 +84,7 @@ docker build -t zeptohttpd:dev .
 Multi-platform build:
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/386 \
+docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/arm/v5,linux/386 \
   --build-arg VERSION="$(git describe --tags --always)" -t zeptohttpd:dev .
 ```
 
